@@ -1,0 +1,9 @@
+garage_overhead_lights:
+    name: Garage Lights
+    icon: 'mdi:lightbulb'
+    entities:
+      - switch.eb19c16e56b3f3dbderuca
+      - switch.eb1927b8ecc3ea5ef6v5sh
+      - switch.ebee5df91f96a8a736eshl
+      - switch.eb8cfd2f250b27c95eef0a
+      

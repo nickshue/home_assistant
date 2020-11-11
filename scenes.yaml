@@ -1,0 +1,197 @@
+- id: '1604169422958'
+  name: HA_Good_Night
+  entities:
+    climate.mysa_8aa440:
+      hvac_modes:
+      - 'off'
+      - heat
+      - cool
+      - heat_cool
+      min_temp: 41
+      max_temp: 86
+      current_temperature: 74
+      temperature: 65
+      current_humidity: 47
+      hvac_action: idle
+      friendly_name: Living Room Mysa
+      supported_features: 1
+      state: heat
+    climate.mysa_8aae44:
+      hvac_modes:
+      - 'off'
+      - heat
+      - cool
+      - heat_cool
+      min_temp: 41
+      max_temp: 86
+      current_temperature: 72
+      temperature: 65
+      current_humidity: 49
+      hvac_action: idle
+      friendly_name: Bedroom Mysa
+      supported_features: 1
+      state: heat
+    light.bedroom_ceiling:
+      entity_id:
+      - light.bedroom1
+      - light.bedroom2
+      friendly_name: Bedroom Ceiling
+      icon: mdi:lightbulb-group
+      supported_features: 41
+      state: 'off'
+    light.dining_room_ceiling:
+      entity_id:
+      - light.dr_bulb1
+      - light.dr_bulb2
+      friendly_name: Dining Room Ceiling
+      icon: mdi:lightbulb-group
+      supported_features: 41
+      state: 'off'
+    light.nightstands:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      - random
+      entity_id:
+      - light.marty_bs_bulb
+      - light.nick_bs_bulb
+      friendly_name: Nightstands
+      icon: mdi:lightbulb-group
+      supported_features: 63
+      state: 'off'
+    light.kitchen_ceiling:
+      entity_id:
+      - light.ktch1
+      - light.ktch2
+      - light.ktch3
+      friendly_name: Kitchen Ceiling
+      icon: mdi:lightbulb-group
+      supported_features: 41
+      state: 'off'
+    light.living_room_torchiere:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      - random
+      brightness: 64
+      hs_color:
+      - 36
+      - 3.922
+      rgb_color:
+      - 255
+      - 250
+      - 244
+      xy_color:
+      - 0.332
+      - 0.335
+      effect: none
+      entity_id:
+      - light.liv_rm_bulb
+      friendly_name: Living Room Torchiere
+      icon: mdi:lightbulb-group
+      supported_features: 63
+      state: 'on'
+- id: '1604325836511'
+  name: HA_Light_Up_Kitchen
+  entities:
+    light.kitchen_ceiling:
+      brightness: 255
+      entity_id:
+      - light.ktch1
+      - light.ktch2
+      - light.ktch3
+      friendly_name: Kitchen Ceiling
+      icon: mdi:lightbulb-group
+      supported_features: 41
+      state: 'on'
+    light.dining_room_ceiling:
+      brightness: 255
+      entity_id:
+      - light.dr_bulb1
+      - light.dr_bulb2
+      friendly_name: Dining Room Ceiling
+      icon: mdi:lightbulb-group
+      supported_features: 41
+      state: 'on'
+- id: '1604795811338'
+  name: HA_Good_Morning
+  entities:
+    climate.mysa_8aa440:
+      hvac_modes:
+      - 'off'
+      - heat
+      - cool
+      - heat_cool
+      min_temp: 41
+      max_temp: 86
+      current_temperature: 74
+      temperature: 66
+      current_humidity: 47
+      hvac_action: idle
+      friendly_name: Living Room Mysa
+      supported_features: 1
+      state: heat
+    light.mysa_8aa440:
+      brightness: 153
+      friendly_name: Mysa-8aa440
+      supported_features: 1
+      state: 'on'
+    light.kitchen_ceiling:
+      brightness: 204
+      entity_id:
+      - light.ktch1
+      - light.ktch2
+      - light.ktch3
+      friendly_name: Kitchen Ceiling
+      icon: mdi:lightbulb-group
+      supported_features: 41
+      state: 'on'
+    light.dining_room_ceiling:
+      brightness: 204
+      entity_id:
+      - light.dr_bulb1
+      - light.dr_bulb2
+      friendly_name: Dining Room Ceiling
+      icon: mdi:lightbulb-group
+      supported_features: 41
+      state: 'on'
+- id: '1604939539573'
+  name: HA_Going_To_Bed
+  entities:
+    light.dining_room_ceiling:
+      brightness: 204
+      entity_id:
+      - light.dr_bulb1
+      - light.dr_bulb2
+      friendly_name: Dining Room Ceiling
+      icon: mdi:lightbulb-group
+      supported_features: 41
+      state: 'on'
+    light.kitchen_ceiling:
+      brightness: 204
+      entity_id:
+      - light.ktch1
+      - light.ktch2
+      - light.ktch3
+      friendly_name: Kitchen Ceiling
+      icon: mdi:lightbulb-group
+      supported_features: 41
+      state: 'on'
+    light.nightstands:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      - random
+      brightness: 255
+      color_temp: 316
+      effect: none
+      entity_id:
+      - light.marty_bs_bulb
+      - light.nick_bs_bulb
+      friendly_name: Nightstands
+      icon: mdi:lightbulb-group
+      supported_features: 63
+      state: 'on'

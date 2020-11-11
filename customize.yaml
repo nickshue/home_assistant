@@ -1,0 +1,8 @@
+climate.mysa_8aa440:
+  friendly_name: Living Room Mysa
+climate.mysa_8aae44:
+  friendly_name: Bedroom Mysa
+cover.garage_door:
+  friendly_name: Garage Door
+media_player.living_room:
+  friendly_name: Guest Bedroom Roku

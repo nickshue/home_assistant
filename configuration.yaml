@@ -1,0 +1,167 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+discovery:
+
+
+
+homeassistant:
+  customize: !include customize.yaml
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+# Includes for sub-config files
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.homekit: debug
+    pyhap: debug
+    homeassistant.components.homekit_controller: debug
+
+# opengarage.io opener controller
+cover:
+  platform: opengarage
+  covers:
+      garage:
+        host: 192.168.1.234
+        device_key: opendoor
+        name: garage_door
+        
+# pi-hole
+pi_hole:
+  - host: 192.168.1.254
+  
+sabnzbd:
+  api_key: 6c35cc2de134890905cf33b438f5166d
+  host: 192.168.1.108
+  port: 8082
+  name: "sabnzbd"
+  sensors:
+    - current_status
+    - speed
+    - queue_size
+    - queue_remaining
+    - disk_size
+    - disk_free
+    - queue_count
+    - day_size
+    - week_size
+    - month_size
+    - total_size
+
+ffmpeg:
+
+##BLOCK##
+# Statements added for Homekit to get Mysa to work with HA
+# See also statements added to automations.yaml
+
+homekit:
+#- filter:
+#     include_domains:
+#     - climate
+#     exclude_entities:
+#     - light.nick_bs_bulb
+#     - light.marty_bs_bulb
+  auto_start: false
+##BLOCK##
+
+light:
+- platform: group
+  name: Bedroom Ceiling
+  entities:
+    - light.bedroom1
+    - light.bedroom2
+- platform: group
+  name: Nightstands
+  entities:
+    - light.marty_bs_bulb
+    - light.nick_bs_bulb
+- platform: group
+  name: Kitchen Ceiling
+  entities:
+    - light.ktch1
+    - light.ktch2
+    - light.ktch3
+- platform: group
+  name: Entrance Ceiling
+  entities:
+    - light.ent_bulb1
+    - light.ent_bulb2
+- platform: group
+  name: Dining Room Ceiling
+  entities:
+    - light.dr_bulb1
+    - light.dr_bulb2
+- platform: group
+  name: Living Room Torchiere
+  entities:
+    - light.liv_rm_bulb
+
+
+
+
+sensor:
+
+  platform: template
+  sensors:
+    garage_status:
+      friendly_name: 'Garage Door Status'
+      value_template: '{% if states.cover.garage_door %}
+          {% if states.cover.garage_door.attributes["door_state"] == "open" %}
+            Open
+          {% elif states.cover.garage_door.attributes["door_state"] == "closed" %}
+            Closed
+          {% elif states.cover.garage_door.attributes["door_state"] == "opening" %}
+            Opening
+          {% elif states.cover.garage_door.attributes["door_state"] == "closing" %}
+            Closing
+          {% else %}
+            Unknown
+          {% endif %}
+          {% else %}
+          n/a
+          {% endif %}'
+
+
+switch:
+  - platform: command_line
+    switches:
+      #toggles Basement Roku TV
+      basement_tv_power:
+        friendly_name: "Basement TV Power"
+        command_on: 'curl -X POST http://192.168.1.207:8060/keypress/PowerOn'
+        command_off: 'curl -X POST http://192.168.1.207:8060/keypress/PowerOff'
+        command_state: 'curl -s GET http://192.168.1.207:8060/query/device-info | grep power-mode | sed -e "s:<power-mode>DisplayOff</power-mode>:OFF:" -e "s:<power-mode>PowerOn</power-mode>:ON:"'
+        value_template: '{{ value == "ON" }}'
+        
+        
+input_boolean:
+  nickhome:
+    name: Nick is home
+    initial: off
+    icon: mdi:human-male
+  martyhome:
+    name: Marty is home
+    initial: off
+    icon: mdi:human-female
+  homeoccupied:
+    name: Home Occupied
+    initial: off
+    icon: mdi:human-male-female
+  houseguests:
+    name: House Guests
+    initial: off
+    icon: mdi:human-queue
+  #garagedoor:
+  #   name: Garage Door Closed
+  #   inital: on
+  #   icon: mdi:garage
+
+        
