@@ -9,10 +9,10 @@
       - heat_cool
       min_temp: 41
       max_temp: 86
-      current_temperature: 74
+      current_temperature: 65
       temperature: 65
-      current_humidity: 47
-      hvac_action: idle
+      current_humidity: 48
+      hvac_action: heating
       friendly_name: Living Room Mysa
       supported_features: 1
       state: heat
@@ -24,10 +24,10 @@
       - heat_cool
       min_temp: 41
       max_temp: 86
-      current_temperature: 72
+      current_temperature: 65
       temperature: 65
-      current_humidity: 49
-      hvac_action: idle
+      current_humidity: 55
+      hvac_action: heating
       friendly_name: Bedroom Mysa
       supported_features: 1
       state: heat
@@ -77,14 +77,14 @@
       - random
       brightness: 64
       hs_color:
-      - 36
-      - 3.922
+      - 32.727
+      - 4.314
       rgb_color:
       - 255
-      - 250
-      - 244
+      - 249
+      - 243
       xy_color:
-      - 0.332
+      - 0.333
       - 0.335
       effect: none
       entity_id:
@@ -92,6 +92,15 @@
       friendly_name: Living Room Torchiere
       icon: mdi:lightbulb-group
       supported_features: 63
+      state: 'on'
+    light.entrance_ceiling:
+      brightness: 51
+      entity_id:
+      - light.ent_bulb1
+      - light.ent_bulb2
+      friendly_name: Entrance Ceiling
+      icon: mdi:lightbulb-group
+      supported_features: 41
       state: 'on'
 - id: '1604325836511'
   name: HA_Light_Up_Kitchen
