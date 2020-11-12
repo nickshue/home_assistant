@@ -38,6 +38,7 @@ cover:
 pi_hole:
   - host: 192.168.1.254
   
+# sabnzbd
 sabnzbd:
   api_key: 6c35cc2de134890905cf33b438f5166d
   host: 192.168.1.108
@@ -58,20 +59,11 @@ sabnzbd:
 
 ffmpeg:
 
-##BLOCK##
-# Statements added for Homekit to get Mysa to work with HA
-# See also statements added to automations.yaml
-
+# homekit manual start
 homekit:
-#- filter:
-#     include_domains:
-#     - climate
-#     exclude_entities:
-#     - light.nick_bs_bulb
-#     - light.marty_bs_bulb
   auto_start: false
-##BLOCK##
 
+# light groups
 light:
 - platform: group
   name: Bedroom Ceiling
@@ -106,7 +98,7 @@ light:
 
 
 
-
+# sensors
 sensor:
 
   platform: template
@@ -130,6 +122,7 @@ sensor:
           {% endif %}'
 
 
+# switches
 switch:
   - platform: command_line
     switches:
@@ -141,7 +134,7 @@ switch:
         command_state: 'curl -s GET http://192.168.1.207:8060/query/device-info | grep power-mode | sed -e "s:<power-mode>DisplayOff</power-mode>:OFF:" -e "s:<power-mode>PowerOn</power-mode>:ON:"'
         value_template: '{{ value == "ON" }}'
         
-        
+# input booleans        
 input_boolean:
   nickhome:
     name: Nick is home
@@ -159,9 +152,4 @@ input_boolean:
     name: House Guests
     initial: off
     icon: mdi:human-queue
-  #garagedoor:
-  #   name: Garage Door Closed
-  #   inital: on
-  #   icon: mdi:garage
-
         
