@@ -2,9 +2,6 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 discovery:
-
-
-
 homeassistant:
   customize: !include customize.yaml
 
@@ -100,7 +97,7 @@ light:
 
 # sensors
 sensor:
-
+# Garage Door Status
   platform: template
   sensors:
     garage_status:
@@ -111,7 +108,7 @@ sensor:
           {% elif states.cover.garage_door.attributes["door_state"] == "closed" %}
             Closed
           {% elif states.cover.garage_door.attributes["door_state"] == "opening" %}
-            Opening
+            Opemdi:ning
           {% elif states.cover.garage_door.attributes["door_state"] == "closing" %}
             Closing
           {% else %}
@@ -121,6 +118,19 @@ sensor:
           n/a
           {% endif %}'
 
+# Sensors for Mysa thermostats humidity
+    mysa_family_room_humidity:
+      friendly_name: "Family Room Humidity"
+      unit_of_measurement: "%"
+      value_template: "{{ state_attr('climate.mysa_0b1050', 'current_humidity') }}"   
+    mysa_living_room_humidity:
+      friendly_name: "Living Room Humidity"
+      unit_of_measurement: "%"
+      value_template: "{{ state_attr('climate.mysa_8aa440', 'current_humidity') }}"
+    mysa_bedroom_humidity:
+      friendly_name: "Bedroom Humidity"
+      unit_of_measurement: "%"
+      value_template: "{{ state_attr('climate.mysa_8aae44', 'current_humidity') }}"
 
 # switches
 switch:
@@ -134,7 +144,8 @@ switch:
         command_state: 'curl -s GET http://192.168.1.207:8060/query/device-info | grep power-mode | sed -e "s:<power-mode>DisplayOff</power-mode>:OFF:" -e "s:<power-mode>PowerOn</power-mode>:ON:"'
         value_template: '{{ value == "ON" }}'
         
-# input booleans        
+# input booleans 
+# home/awat statuses
 input_boolean:
   nickhome:
     name: Nick is home
@@ -152,4 +163,10 @@ input_boolean:
     name: House Guests
     initial: off
     icon: mdi:human-queue
+
+# trigger to export to Alexa for voice actions to node red
+  ha_good_night_boolan:
+    name: Good Night Boolan
+    initial: off
+    icon: mdi:moon-first-quarter
         
